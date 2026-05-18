@@ -1,0 +1,17 @@
+build/
+.DS_Store
+*.aux
+*.bbl
+*.blg
+*.log
+*.out
+*.toc
+*.lof
+*.lot
+*.gz
+*.nav
+*.snm
+*.vrb
+*.fdb_latexmk
+*.fls
+*.synctex.gz

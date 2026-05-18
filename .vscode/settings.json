@@ -1,0 +1,56 @@
+{
+  "latex-workshop.latex.outDir": "%DIR%",
+  "latex-workshop.latex.recipes": [
+    {
+      "name": "xelatex -> biber -> xelatex x2",
+      "tools": [
+        "xelatex",
+        "biber",
+        "xelatex",
+        "xelatex"
+      ]
+    }
+  ],
+  "latex-workshop.latex.tools": [
+    {
+      "name": "xelatex",
+      "command": "/Library/TeX/texbin/xelatex",
+      "args": [
+        "-synctex=1",
+        "-interaction=nonstopmode",
+        "-file-line-error",
+        "%DOC%"
+      ]
+    },
+    {
+      "name": "biber",
+      "command": "/Library/TeX/texbin/biber",
+      "args": [
+        "%DOCFILE%"
+      ]
+    }
+  ],
+  "latex-workshop.latex.recipe.default": "first",
+  "latex-workshop.latex.autoBuild.run": "onSave",
+  "latex-workshop.view.pdf.viewer": "tab",
+  "latex-workshop.view.pdf.tab.editorGroup": "right",
+  "latex-workshop.view.pdf.internal.synctex.keybinding": "double-click",
+  "latex-workshop.latex.autoClean.run": "onBuilt",
+  "latex-workshop.latex.clean.method": "glob",
+  "latex-workshop.latex.clean.fileTypes": [
+    "*.aux",
+    "*.bbl",
+    "*.bcf",
+    "*.blg",
+    "*.fdb_latexmk",
+    "*.fls",
+    "*.log",
+    "*.out",
+    "*.run.xml",
+    "*.synctex.gz",
+    "*.toc",
+    "*.nav",
+    "*.snm",
+    "*.xdv"
+  ]
+}
