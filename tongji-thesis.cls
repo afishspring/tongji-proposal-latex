@@ -349,3 +349,27 @@
 \algrenewcommand\algorithmicwhile{\textbf{当}}
 \algrenewcommand\algorithmicreturn{\textbf{返回}}
 \algrenewcommand\algorithmicend{\textbf{结束}}
+
+% =========================
+% 参考文献格式
+% =========================
+\RequirePackage{setspace}
+
+% 英文字体：Times New Roman，找不到则用 TeX Gyre Termes
+\newcommand{\thesisbiblatinfontname}{TeX Gyre Termes}
+\IfFontExistsTF{Times New Roman}{
+  \renewcommand{\thesisbiblatinfontname}{Times New Roman}
+}{}
+
+\newfontfamily\thesisbibtimes{\thesisbiblatinfontname}
+
+\AtBeginDocument{%
+  \renewcommand*{\bibfont}{%
+    \thesissong
+    \thesisbibtimes
+    \fontsize{12pt}{12pt}\selectfont
+    \setstretch{1}%
+  }%
+  \setlength{\bibitemsep}{0pt}
+  \setlength{\bibparsep}{0pt}
+}
