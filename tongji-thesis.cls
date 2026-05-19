@@ -21,41 +21,86 @@
 \RequirePackage{fontspec}
 \RequirePackage{indentfirst}
 
-% 中文字体
-% 中文字体
-\newcommand{\thesismainfontname}{FandolSong-Regular}
-\newcommand{\thesissansfontname}{FandolHei-Regular}
+% =========================
+% 中文字体设置
+% =========================
 
+% 默认回退字体
+\newcommand{\thesismainfontname}{Songti SC}
+\newcommand{\thesismainboldfontname}{STHeiti}
+\newcommand{\thesissansfontname}{PingFang SC}
+\newcommand{\thesissansboldfontname}{PingFang SC}
+
+% 正文字体优先级：Songti SC -> SimSun -> STSong -> FandolSong-Regular
 \IfFontExistsTF{Songti SC}{
   \renewcommand{\thesismainfontname}{Songti SC}
+  \IfFontExistsTF{STHeiti}{
+    \renewcommand{\thesismainboldfontname}{STHeiti}
+  }
 }{
   \IfFontExistsTF{SimSun}{
     \renewcommand{\thesismainfontname}{SimSun}
-  }{}
+    \IfFontExistsTF{SimHei}{
+      \renewcommand{\thesismainboldfontname}{SimHei}
+    }
+  }{
+    \IfFontExistsTF{STSong}{
+      \renewcommand{\thesismainfontname}{STSong}
+      \IfFontExistsTF{STHeiti}{
+        \renewcommand{\thesismainboldfontname}{STHeiti}
+      }
+    }{
+      \renewcommand{\thesismainfontname}{FandolSong-Regular}
+      \renewcommand{\thesismainboldfontname}{FandolHei-Regular}
+    }
+  }
 }
 
+% 黑体优先级：PingFang SC -> Heiti SC -> STHeiti -> FandolHei-Regular
 \IfFontExistsTF{PingFang SC}{
   \renewcommand{\thesissansfontname}{PingFang SC}
+  \IfFontExistsTF{PingFang SC Semibold}{
+    \renewcommand{\thesissansboldfontname}{PingFang SC Semibold}
+  }{
+    \renewcommand{\thesissansboldfontname}{PingFang SC}
+  }
 }{
   \IfFontExistsTF{Heiti SC}{
     \renewcommand{\thesissansfontname}{Heiti SC}
-  }{}
+    \renewcommand{\thesissansboldfontname}{Heiti SC}
+  }{
+    \IfFontExistsTF{STHeiti}{
+      \renewcommand{\thesissansfontname}{STHeiti}
+      \renewcommand{\thesissansboldfontname}{STHeiti}
+    }{
+      \renewcommand{\thesissansfontname}{FandolHei-Regular}
+      \renewcommand{\thesissansboldfontname}{FandolHei-Regular}
+    }
+  }
 }
 
 % 正文中文字体：宋体
-\setCJKmainfont{\thesismainfontname}
+\setCJKmainfont{\thesismainfontname}[
+  BoldFont = {\thesismainboldfontname}
+]
 
 % 无衬线中文字体：黑体
-\setCJKsansfont{\thesissansfontname}
+\setCJKsansfont{\thesissansfontname}[
+  BoldFont = {\thesissansboldfontname}
+]
 
 % 方便调用
-\newCJKfontfamily\thesissong{\thesismainfontname}
-\newCJKfontfamily\thesishei{\thesissansfontname}
+\newCJKfontfamily\thesissong{\thesismainfontname}[
+  BoldFont = {\thesismainboldfontname}
+]
+\newCJKfontfamily\thesishei{\thesissansfontname}[
+  BoldFont = {\thesissansboldfontname}
+]
 
 % 正文版式
 \setlength{\parindent}{2em}
 \setlength{\parskip}{0pt}
-\renewcommand{\normalsize}{\fontsize{12pt}{20pt}\selectfont}
+\renewcommand{\normalsize}{\fontsize{12pt}{18pt}\selectfont}
 \normalsize
 
 % 标题版式
@@ -132,11 +177,11 @@
 \setlength{\covervaluewidth}{\dimexpr\textwidth-\coverlabelwidth-2\tabcolsep\relax}
 % \setlength{\covervaluewidth}{27em}
 \newcommand{\coverlabel}[1]{
-  \makebox[\coverlabelwidth][s]{{\thesishei\fontsize{14pt}{18pt}\selectfont #1}}
+  \makebox[\coverlabelwidth][s]{{\thesishei\bfseries\fontsize{14pt}{18pt}\selectfont #1}}
 }
 \newcommand{\coveritem}[2]{%
   \parbox[t]{\coverlabelwidth}{\coverlabel{#1}\par} &
-  \parbox[t]{\covervaluewidth}{\centering{\thesishei\fontsize{14pt}{18pt}\selectfont #2}\par} \\[-0.22cm]
+  \parbox[t]{\covervaluewidth}{\centering{\thesishei\bfseries\fontsize{14pt}{18pt}\selectfont #2}\par} \\[-0.22cm]
   & \rule{\covervaluewidth}{0.4pt} \\
 }
 
@@ -170,8 +215,8 @@
 
 \vfill
 
-{{\thesishei\fontsize{12pt}{12pt}\selectfont 同济大学研究生院}}\\
-{{\thesishei\fontsize{12pt}{12pt}\selectfont \proposalyear\ 年 \proposalmonth\ 月 \proposalday\ 日}}
+{{\thesishei\bfseries\fontsize{12pt}{12pt}\selectfont 同济大学研究生院}}\\
+{{\thesishei\bfseries\fontsize{12pt}{12pt}\selectfont \proposalyear\ 年 \proposalmonth\ 月 \proposalday\ 日}}
 
 \end{titlepage}
 }
@@ -184,7 +229,7 @@
   \fontsize{12pt}{12pt}\selectfont
 
   % 左上角标题
-  \noindent{\thesishei 选题报告及论文工作计划要求：}\par
+  \noindent{\thesishei\bfseries 选题报告及论文工作计划要求：}\par
   \vspace{0.05cm}
 
   % 边框设置
@@ -210,7 +255,7 @@
 
   % 下方居中标题
   \begin{center}
-    {\thesishei\fontsize{18pt}{20pt}\selectfont 选题报告及论文工作计划}
+    {\thesishei\bfseries\fontsize{18pt}{20pt}\selectfont 选题报告及论文工作计划}
   \end{center}
 
   \endgroup
