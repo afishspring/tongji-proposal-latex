@@ -299,7 +299,9 @@
 }
 
 \newenvironment{researchprogresstable}{%
-  \par\noindent{\thesishei\bfseries\fontsize{12pt}{18pt}\selectfont \researchprogressname}\par
+  \par\vspace{18pt}%
+  \noindent{\thesishei\bfseries\fontsize{15.77pt}{22pt}\selectfont \researchprogressname}\par
+  \vspace{18pt}%
   \begingroup
   \noindent
   \begin{tblr}{
